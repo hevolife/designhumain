@@ -22,7 +22,7 @@ https://ibtrxutmaqvmicumwdym.supabase.co/functions/v1/keep-alive
    - **Address:** `https://ibtrxutmaqvmicumwdym.supabase.co/functions/v1/keep-alive`
    - **Schedule:** Toutes les heures (ou toutes les 30 minutes)
    - **HTTP method:** GET
-   - **Headers:** Ajoutez `apikey: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImlidHJ4dXRtYXF2bWljdW13ZHltIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjY4NDgwNzQsImV4cCI6MjA4MjQyNDA3NH0.tp1X3v_ehuiZZN2tDuz6flWFAVcR2VgnvTul9BLv1LI`
+   - **Headers:** Aucun header nécessaire (la fonction est publique)
 
 ### Option 2: EasyCron
 
@@ -39,7 +39,6 @@ https://ibtrxutmaqvmicumwdym.supabase.co/functions/v1/keep-alive
    - **Monitor Type:** HTTP(s)
    - **URL:** `https://ibtrxutmaqvmicumwdym.supabase.co/functions/v1/keep-alive`
    - **Monitoring Interval:** 30-60 minutes
-   - **HTTP Headers:** Ajoutez votre clé API Supabase
 
 ### Option 4: GitHub Actions (Si votre projet est sur GitHub)
 
@@ -60,12 +59,8 @@ jobs:
     steps:
       - name: Ping Keep-Alive Function
         run: |
-          curl -X GET \
-            -H "apikey: ${{ secrets.SUPABASE_ANON_KEY }}" \
-            https://ibtrxutmaqvmicumwdym.supabase.co/functions/v1/keep-alive
+          curl -X GET https://ibtrxutmaqvmicumwdym.supabase.co/functions/v1/keep-alive
 ```
-
-N'oubliez pas d'ajouter `SUPABASE_ANON_KEY` dans les secrets GitHub.
 
 ## Fréquence Recommandée
 
@@ -81,16 +76,16 @@ Pour vérifier que votre cronjob fonctionne:
 
 1. Testez manuellement la fonction:
 ```bash
-curl https://ibtrxutmaqvmicumwdym.supabase.co/functions/v1/keep-alive \
-  -H "apikey: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImlidHJ4dXRtYXF2bWljdW13ZHltIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjY4NDgwNzQsImV4cCI6MjA4MjQyNDA3NH0.tp1X3v_ehuiZZN2tDuz6flWFAVcR2VgnvTul9BLv1LI"
+curl https://ibtrxutmaqvmicumwdym.supabase.co/functions/v1/keep-alive
 ```
 
 2. Vous devriez recevoir une réponse JSON:
 ```json
 {
   "status": "success",
-  "message": "Database is active",
-  "timestamp": "2024-01-27T..."
+  "message": "Keep-alive ping successful",
+  "timestamp": "2027-01-27T...",
+  "project": "designhumain"
 }
 ```
 

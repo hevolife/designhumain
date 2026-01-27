@@ -15,32 +15,17 @@ Deno.serve(async (req: Request) => {
   }
 
   try {
-    const supabaseUrl = Deno.env.get("SUPABASE_URL");
-    const supabaseKey = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY");
-
-    if (!supabaseUrl || !supabaseKey) {
-      throw new Error("Missing environment variables");
-    }
-
-    // Effectuer une requête simple pour garder la base active
-    const response = await fetch(`${supabaseUrl}/rest/v1/contact_requests?limit=1`, {
-      headers: {
-        "apikey": supabaseKey,
-        "Authorization": `Bearer ${supabaseKey}`,
-      },
-    });
-
-    if (!response.ok) {
-      throw new Error(`Database query failed: ${response.statusText}`);
-    }
-
+    // Simple ping - pas besoin d'authentification
+    // L'exécution de cette fonction suffit à garder le projet actif
     const data = {
       status: "success",
-      message: "Database is active",
+      message: "Keep-alive ping successful",
       timestamp: new Date().toISOString(),
+      project: "designhumain",
     };
 
     return new Response(JSON.stringify(data), {
+      status: 200,
       headers: {
         ...corsHeaders,
         "Content-Type": "application/json",
