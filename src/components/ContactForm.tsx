@@ -2,53 +2,37 @@ import { useState } from 'react';
 import { Button } from './Button';
 import { Card } from './Card';
 import { Heart } from 'lucide-react';
-import { supabase } from '../lib/supabase';
-import type { DiscoverySession } from '../types/database';
 
 export function ContactForm() {
-  const [formData, setFormData] = useState<DiscoverySession>({
-    name: '',
-    email: '',
-    phone: '',
-    preferred_date: '',
-    message: '',
-  });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsSubmitting(true);
     setSubmitStatus('idle');
 
-    try {
-      const { error } = await supabase
-        .from('discovery_sessions')
-        .insert([formData]);
+    const form = e.currentTarget;
 
-      if (error) throw error;
+    try {
+      const response = await fetch('https://formspree.io/f/xaqpdpge', {
+        method: 'POST',
+        body: new FormData(form),
+        headers: {
+          'Accept': 'application/json'
+        }
+      });
+
+      if (!response.ok) throw new Error('Form submission failed');
 
       setSubmitStatus('success');
-      setFormData({
-        name: '',
-        email: '',
-        phone: '',
-        preferred_date: '',
-        message: '',
-      });
+      form.reset();
     } catch (error) {
       console.error('Error submitting form:', error);
       setSubmitStatus('error');
     } finally {
       setIsSubmitting(false);
     }
-  };
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value,
-    });
   };
 
   return (
@@ -68,15 +52,13 @@ export function ContactForm() {
       ) : (
         <form onSubmit={handleSubmit} className="space-y-6">
           <div>
-            <label htmlFor="name" className="block text-primary font-medium mb-2">
+            <label htmlFor="nom_complet" className="block text-primary font-medium mb-2">
               Nom complet *
             </label>
             <input
               type="text"
-              id="name"
-              name="name"
-              value={formData.name}
-              onChange={handleChange}
+              id="nom_complet"
+              name="nom_complet"
               required
               className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent"
             />
@@ -90,39 +72,33 @@ export function ContactForm() {
               type="email"
               id="email"
               name="email"
-              value={formData.email}
-              onChange={handleChange}
               required
               className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent"
             />
           </div>
 
           <div>
-            <label htmlFor="phone" className="block text-primary font-medium mb-2">
+            <label htmlFor="telephone" className="block text-primary font-medium mb-2">
               Téléphone *
             </label>
             <input
               type="tel"
-              id="phone"
-              name="phone"
-              value={formData.phone}
-              onChange={handleChange}
+              id="telephone"
+              name="telephone"
               required
               className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent"
             />
           </div>
 
           <div>
-            <label htmlFor="preferred_date" className="block text-primary font-medium mb-2">
-              Date/horaire souhaité (optionnel)
+            <label htmlFor="date_horaire" className="block text-primary font-medium mb-2">
+              Date et horaire souhaité *
             </label>
             <input
-              type="text"
-              id="preferred_date"
-              name="preferred_date"
-              value={formData.preferred_date}
-              onChange={handleChange}
-              placeholder="Ex: Semaine prochaine, matin de préférence"
+              type="datetime-local"
+              id="date_horaire"
+              name="date_horaire"
+              required
               className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent"
             />
           </div>
@@ -134,8 +110,6 @@ export function ContactForm() {
             <textarea
               id="message"
               name="message"
-              value={formData.message}
-              onChange={handleChange}
               rows={4}
               placeholder="Parlez-moi un peu de votre situation ou de vos attentes..."
               className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent resize-none"
