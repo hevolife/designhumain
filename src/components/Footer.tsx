@@ -1,4 +1,4 @@
-import { Heart, Mail, Phone } from 'lucide-react';
+import { Heart, Mail, Phone, Instagram } from 'lucide-react';
 
 interface FooterProps {
   onNavigate: (page: string) => void;
@@ -60,6 +60,26 @@ export function Footer({ onNavigate }: FooterProps) {
                   <Phone size={20} />
                 </div>
                 <span className="text-white/90">+33 (0)6 58 12 21 01</span>
+              </div>
+              <div className="flex items-center space-x-3 pt-2">
+                <a
+                  href="https://www.instagram.com/laurencemallaroni_designhumain/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="bg-accent text-primary p-2.5 rounded-lg shadow-lg hover:scale-110 transition-transform duration-300"
+                  title="Instagram"
+                >
+                  <Instagram size={20} />
+                </a>
+                <a
+                  href="https://share.google.com/mJzMzbN8OI3eDsviB"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="bg-accent text-primary p-2.5 rounded-lg shadow-lg hover:scale-110 transition-transform duration-300 font-bold text-sm flex items-center justify-center w-11 h-11"
+                  title="Google"
+                >
+                  G
+                </a>
               </div>
             </div>
           </div>

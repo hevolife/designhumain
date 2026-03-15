@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Button } from './Button';
 import { Card } from './Card';
-import { Heart, Instagram } from 'lucide-react';
+import { Heart } from 'lucide-react';
 
 export function ContactForm() {
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -103,26 +103,6 @@ export function ContactForm() {
             />
           </div>
 
-          <div className="flex gap-4 pt-2">
-            <a
-              href="https://www.instagram.com/laurencemallaroni_designhumain/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center justify-center w-12 h-12 bg-gray-200 rounded-lg hover:bg-primary hover:text-white transition-colors"
-              title="Instagram"
-            >
-              <Instagram size={20} />
-            </a>
-            <a
-              href="https://share.google.com/mJzMzbN8OI3eDsviB"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center justify-center w-12 h-12 bg-gray-200 rounded-lg hover:bg-primary hover:text-white transition-colors font-bold text-sm"
-              title="Google"
-            >
-              G
-            </a>
-          </div>
 
           <div>
             <label htmlFor="message" className="block text-primary font-medium mb-2">
