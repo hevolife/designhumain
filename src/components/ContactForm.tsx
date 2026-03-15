@@ -60,7 +60,7 @@ export function ContactForm() {
               id="nom_complet"
               name="nom_complet"
               required
-              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent"
+              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent text-primary"
             />
           </div>
 
@@ -73,7 +73,7 @@ export function ContactForm() {
               id="email"
               name="email"
               required
-              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent"
+              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent text-primary"
             />
           </div>
 
@@ -86,7 +86,7 @@ export function ContactForm() {
               id="telephone"
               name="telephone"
               required
-              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent"
+              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent text-primary"
             />
           </div>
 
@@ -99,7 +99,7 @@ export function ContactForm() {
               id="date_horaire"
               name="date_horaire"
               required
-              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent"
+              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent text-primary"
             />
           </div>
 
@@ -112,7 +112,7 @@ export function ContactForm() {
               name="message"
               rows={4}
               placeholder="Parlez-moi un peu de votre situation ou de vos attentes..."
-              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent resize-none"
+              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent resize-none text-primary"
             />
           </div>
 
