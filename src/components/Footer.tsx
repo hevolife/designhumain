@@ -72,7 +72,7 @@ export function Footer({ onNavigate }: FooterProps) {
                   <Instagram size={20} />
                 </a>
                 <a
-                  href="https://share.google.com/mJzMzbN8OI3eDsviB"
+                  href="https://share.google/eO2bqlOibfTOa4atZ"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="bg-accent text-primary p-2.5 rounded-lg shadow-lg hover:scale-110 transition-transform duration-300 font-bold text-sm flex items-center justify-center w-11 h-11"
